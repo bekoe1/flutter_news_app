@@ -26,8 +26,8 @@ class CurrentNewsPage extends StatelessWidget {
                   backgroundColor: Colors.black,
                   leading: IconButton(
                     icon: Icon(
-                      Icons.chevron_left,
-                      size: 30,
+                      MyConstants.leading.icon,
+                      size: MyConstants.leading.size,
                       color:
                           state is ArticleLoaded ? Colors.white : Colors.black,
                     ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1480777105",
+    "project_id": "newsapp-33e56",
+    "storage_bucket": "newsapp-33e56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1480777105:android:6588a9851d1f66ce564e30",
+        "android_client_info": {
+          "package_name": "com.example.forestvpn_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhMteMUSxVG54X_-pXgX8oct_SZZ7mtZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

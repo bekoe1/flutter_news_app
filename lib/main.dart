@@ -1,17 +1,20 @@
-import 'package:era_developers_test_flutter/presentation/all_news_page/all_news_page.dart';
+import 'package:era_developers_test_flutter/firebase_options.dart';
+import 'package:era_developers_test_flutter/presentation/auth_page/auth_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const ForestVPNTestApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(NewsApp());
 }
 
-class ForestVPNTestApp extends StatelessWidget {
-  const ForestVPNTestApp({Key? key}) : super(key: key);
-
+class NewsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: AllNewsPage(),
+      home: AuthPage(),
     );
   }
 }

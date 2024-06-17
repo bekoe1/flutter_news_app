@@ -22,9 +22,7 @@ class LatestNewsList extends StatelessWidget {
         return ContainerWithShades(
           width: double.maxFinite,
           padding: const EdgeInsets.all(20),
-          color: latestNews[index].readed
-              ? const Color.fromRGBO(245, 245, 245, 1)
-              : null,
+          color: latestNews[index].readed ? Colors.white54 : null,
           onTap: () {
             onNewsTap(latestNews[index]);
           },

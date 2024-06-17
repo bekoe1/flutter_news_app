@@ -20,10 +20,7 @@ class AllNewsPage extends StatelessWidget {
             backgroundColor: MyConstants.backgroundColor,
             appBar: AppBar(
               leading: IconButton(
-                icon: const Icon(
-                  Icons.chevron_left,
-                  size: 30,
-                ),
+                icon: MyConstants.leading,
                 onPressed: () {},
               ),
               actions: state is AllNewsLoaded
