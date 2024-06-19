@@ -1,5 +1,5 @@
-import 'package:era_developers_test_flutter/utils/constants.dart';
-import 'package:era_developers_test_flutter/utils/container_with_shades.dart';
+import 'package:NewsApp/utils/constants.dart';
+import 'package:NewsApp/utils/container_with_shades.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

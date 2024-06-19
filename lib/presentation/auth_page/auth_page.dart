@@ -1,7 +1,8 @@
-import 'package:era_developers_test_flutter/presentation/login_page/login_page.dart';
-import 'package:era_developers_test_flutter/utils/constants.dart';
-import 'package:era_developers_test_flutter/utils/container_with_shades.dart';
-import 'package:era_developers_test_flutter/utils/custom_elevated_button.dart';
+import 'package:NewsApp/presentation/login_page/login_page.dart';
+import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
+import 'package:NewsApp/utils/constants.dart';
+import 'package:NewsApp/utils/container_with_shades.dart';
+import 'package:NewsApp/utils/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatelessWidget {
@@ -15,24 +16,12 @@ class AuthPage extends StatelessWidget {
         children: [
           const SizedBox(height: 498),
           Center(
-            child: ContainerWithShades(
-              width: 330,
-              height: 56,
-              child: CustomElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()));
-                },
-                text: 'Login',
-                backgroundColor: const Color.fromRGBO(30, 35, 44, 1),
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+            child: ClassicBlackButton(
+              text: "Login",
+              todo: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
+              },
             ),
           ),
           const SizedBox(height: 15),
@@ -41,7 +30,14 @@ class AuthPage extends StatelessWidget {
               width: 330,
               height: 56,
               child: CustomElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpPage(),
+                    ),
+                  );
+                },
                 text: 'Register',
                 backgroundColor: Colors.white,
                 textStyle: const TextStyle(
@@ -52,13 +48,28 @@ class AuthPage extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(
+          Padding(
+            padding: const EdgeInsets.only(
               top: 100,
             ),
-            child: Text(
-              "Continue as guest",
-              style: TextStyle(fontSize: 14),
+            child: TextButton(
+              child: const Text(
+                "Continue as guest",
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color.fromRGBO(53, 194, 193, 1),
+                  decoration: TextDecoration.underline,
+                  decorationColor: Color.fromRGBO(53, 194, 193, 1),
+                  shadows: [
+                    Shadow(
+                      offset: Offset(0, 4),
+                      blurRadius: 5,
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                    ),
+                  ],
+                ),
+              ),
+              onPressed: () {},
             ),
           ),
         ],

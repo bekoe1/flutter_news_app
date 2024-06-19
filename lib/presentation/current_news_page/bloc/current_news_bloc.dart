@@ -1,13 +1,12 @@
 import 'dart:async';
 
+import 'package:NewsApp/domain/repositories/news/abstract_news_repository.dart';
+import 'package:NewsApp/domain/repositories/news/mock_news_repository.dart';
+import 'package:NewsApp/domain/repositories/news/models/article.dart';
 import 'package:bloc/bloc.dart';
-import 'package:era_developers_test_flutter/repositories/news/abstract_news_repository.dart';
-import 'package:era_developers_test_flutter/repositories/news/mock_news_repository.dart';
-import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
 import 'package:meta/meta.dart';
 
 part 'current_news_event.dart';
-
 part 'current_news_state.dart';
 
 class CurrentNewsBloc extends Bloc<CurrentNewsEvent, CurrentNewsState> {

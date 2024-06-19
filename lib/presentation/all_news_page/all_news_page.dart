@@ -1,7 +1,7 @@
-import 'package:era_developers_test_flutter/presentation/all_news_page/widget/featured_news_list.dart';
-import 'package:era_developers_test_flutter/presentation/all_news_page/widget/latest_news_list.dart';
-import 'package:era_developers_test_flutter/presentation/current_news_page/current_news_page.dart';
-import 'package:era_developers_test_flutter/utils/constants.dart';
+import 'package:NewsApp/presentation/all_news_page/widget/featured_news_list.dart';
+import 'package:NewsApp/presentation/all_news_page/widget/latest_news_list.dart';
+import 'package:NewsApp/presentation/current_news_page/current_news_page.dart';
+import 'package:NewsApp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

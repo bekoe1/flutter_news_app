@@ -1,6 +1,6 @@
-import 'package:era_developers_test_flutter/presentation/all_news_page/widget/featured_news_item.dart';
-import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
-import 'package:era_developers_test_flutter/utils/container_with_shades.dart';
+import 'package:NewsApp/domain/repositories/news/models/article.dart';
+import 'package:NewsApp/presentation/all_news_page/widget/featured_news_item.dart';
+import 'package:NewsApp/utils/container_with_shades.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedList extends StatelessWidget {

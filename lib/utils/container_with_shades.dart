@@ -1,4 +1,4 @@
-import 'package:era_developers_test_flutter/utils/constants.dart';
+import 'package:NewsApp/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ContainerWithShades extends StatelessWidget {

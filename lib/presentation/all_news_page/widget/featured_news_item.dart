@@ -1,4 +1,4 @@
-import 'package:era_developers_test_flutter/utils/constants.dart';
+import 'package:NewsApp/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedItem extends StatelessWidget {
@@ -34,7 +34,7 @@ class FeaturedItem extends StatelessWidget {
                 child: Text(
                   title,
                   maxLines: 2,
-                  style:  TextStyle(
+                  style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w400,
                     color: Colors.white,
