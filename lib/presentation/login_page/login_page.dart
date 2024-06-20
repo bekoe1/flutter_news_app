@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:NewsApp/presentation/all_news_page/all_news_page.dart';
 import 'package:NewsApp/presentation/login_page/widgets/dividers_and_text_row.dart';
 import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
 import 'package:NewsApp/utils/constants.dart';
@@ -56,13 +55,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 );
               } else if (state is LogInSuccessfulState) {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const AllNewsPage(),
-                  ),
-                  (Route<dynamic> route) => false,
-                );
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (_) => const AllNewsPage(),
+                //   ),
+                //   (Route<dynamic> route) => false,
+                // );
+                log("прошел на страницу");
               }
             },
             child: Column(

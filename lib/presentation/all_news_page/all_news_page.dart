@@ -1,3 +1,4 @@
+import 'package:NewsApp/data/repo_impl/mock_auth_repo_impl.dart';
 import 'package:NewsApp/presentation/all_news_page/widget/featured_news_list.dart';
 import 'package:NewsApp/presentation/all_news_page/widget/latest_news_list.dart';
 import 'package:NewsApp/presentation/current_news_page/current_news_page.dart';
@@ -21,7 +22,9 @@ class AllNewsPage extends StatelessWidget {
             appBar: AppBar(
               leading: IconButton(
                 icon: MyConstants.leading,
-                onPressed: () {},
+                onPressed: () {
+                  MockAuthRepoImpl().checkUsersDb();
+                },
               ),
               actions: state is AllNewsLoaded
                   ? [

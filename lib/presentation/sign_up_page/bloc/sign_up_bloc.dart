@@ -26,6 +26,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       emit(SignUpSuccessfulState());
     } on FirebaseAuthException catch (e) {
       emit(SignUpErrorState(error: e.message!));
+    } catch (e) {
+      emit(SignUpErrorState(error: e.toString()));
     }
   }
 }

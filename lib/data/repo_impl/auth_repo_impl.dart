@@ -1,9 +1,7 @@
 import 'package:NewsApp/domain/models/user_model.dart';
 import 'package:NewsApp/domain/repositories/auth/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:injectable/injectable.dart';
 
-@Singleton(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuth _auth;
 
@@ -37,5 +35,10 @@ class AuthRepoImpl implements AuthRepo {
         email: email,
         id: response.user!.uid,
         name: response.user!.displayName!);
+  }
+
+  @override
+  void checkUsersDb() {
+    // TODO: implement checkUsersDb
   }
 }

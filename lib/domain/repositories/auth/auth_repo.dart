@@ -11,4 +11,6 @@ abstract class AuthRepo {
     required String email,
     required String pass,
   });
+
+  void checkUsersDb();
 }

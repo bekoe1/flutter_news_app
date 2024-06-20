@@ -83,12 +83,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 );
               } else if (state is SignUpErrorState) {
-                SnackBar(
-                  content: Text(
-                    state.error,
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      state.error,
+                    ),
+                    backgroundColor: Colors.grey,
+                    duration: const Duration(seconds: 2),
                   ),
-                  backgroundColor: Colors.grey,
-                  duration: const Duration(seconds: 2),
                 );
               }
             },
