@@ -29,7 +29,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<UserModel> logInWithEmailAndPas(
+  Future<UserModel> logInWithEmailAndPass(
       {required String email, required String pass}) async {
     final response =
         await _auth.signInWithEmailAndPassword(email: email, password: pass);

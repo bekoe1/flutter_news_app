@@ -1,8 +1,8 @@
 import 'package:NewsApp/presentation/login_page/login_page.dart';
 import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
 import 'package:NewsApp/utils/constants.dart';
-import 'package:NewsApp/utils/container_with_shades.dart';
-import 'package:NewsApp/utils/custom_elevated_button.dart';
+import 'package:NewsApp/widgets/container_with_shades.dart';
+import 'package:NewsApp/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatelessWidget {
@@ -16,12 +16,18 @@ class AuthPage extends StatelessWidget {
         children: [
           const SizedBox(height: 498),
           Center(
-            child: ClassicBlackButton(
-              text: "Login",
-              todo: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
+            child: ContainerWithShades(
+              width: 330,
+              height: 56,
+              child: CustomElevatedButton.classicBlack(
+                text: "Login",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
+                },
+              ),
             ),
           ),
           const SizedBox(height: 15),

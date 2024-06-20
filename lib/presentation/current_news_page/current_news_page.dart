@@ -1,5 +1,5 @@
 import 'package:NewsApp/utils/constants.dart';
-import 'package:NewsApp/utils/container_with_shades.dart';
+import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

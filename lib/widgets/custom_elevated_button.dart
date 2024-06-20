@@ -18,6 +18,22 @@ class CustomElevatedButton extends StatelessWidget {
   final TextStyle? textStyle;
   final ButtonStyle? buttonStyle;
 
+  factory CustomElevatedButton.classicBlack({
+    required String text,
+    required VoidCallback onPressed,
+  }) {
+    return CustomElevatedButton(
+      onPressed: onPressed,
+      text: text,
+      backgroundColor: const Color.fromRGBO(30, 35, 44, 1),
+      textStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 15,
+        fontWeight: FontWeight.w400,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

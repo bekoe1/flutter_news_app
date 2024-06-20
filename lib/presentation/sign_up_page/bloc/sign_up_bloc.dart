@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:NewsApp/domain/repositories/auth/auth_repo.dart';
 import 'package:bloc/bloc.dart';
@@ -15,9 +14,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final AuthRepo authRepo;
 
   SignUpBloc(this.authRepo) : super(SignUpInitial()) {
-    on<SignUpEvent>((event, emit) {
-      on<AttemptToSignUpEvent>(_onSignUpPressed);
-    });
+    on<AttemptToSignUpEvent>(_onSignUpPressed);
   }
 
   Future<void> _onSignUpPressed(
@@ -25,9 +22,10 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     try {
       final response = await authRepo.createUserWithEmailAndPass(
           email: event.email, pass: event.password, name: event.username);
+      //TODO cash data
       emit(SignUpSuccessfulState());
     } on FirebaseAuthException catch (e) {
-      log(e.message!);
+      emit(SignUpErrorState(error: e.message!));
     }
   }
 }

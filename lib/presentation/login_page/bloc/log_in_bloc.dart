@@ -16,20 +16,28 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
   final AuthRepo authRepo;
 
   LogInBloc(this.authRepo) : super(LogInInitial()) {
-    on<LogInEvent>((event, emit) {
-      on<AttemptToLogInEvent>(_onLogInPressed);
+    on<LogInEvent>((event, emit) async {
+      if (event is AttemptToLogInEvent) {
+        await _onLogInPressed(event, emit);
+      }
     });
   }
 
   Future<void> _onLogInPressed(
       AttemptToLogInEvent event, Emitter<LogInState> emit) async {
     try {
-      final user = await authRepo.logInWithEmailAndPas(
-          email: event.email, pass: event.password);
+      log("попытка ");
+      final user = await authRepo.logInWithEmailAndPass(
+        email: event.email,
+        pass: event.password,
+      );
+      log("лог прошел");
       emit(LogInSuccessfulState(user: user));
     } on FirebaseAuthException catch (e) {
       log(e.message!);
       emit(LogInErrorState(error: e.message!));
+    } catch (e) {
+      log(e.toString());
     }
   }
 }
