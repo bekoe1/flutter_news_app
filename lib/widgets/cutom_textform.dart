@@ -1,3 +1,4 @@
+import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,7 @@ class CustomTextForm extends StatelessWidget {
           prefixIcon: const SizedBox(width: 2),
           filled: true,
           hintText: text,
-          hintStyle: const TextStyle(color: Color.fromRGBO(131, 145, 161, 1)),
+          hintStyle: TextStyle(color: MyConstants.smallTextColor),
           fillColor: const Color.fromRGBO(247, 248, 249, 1),
           suffixIcon: suffixIcon,
           border: OutlineInputBorder(

@@ -77,4 +77,16 @@ class MockAuthRepoImpl implements AuthRepo {
       return usersDb[id]!;
     }
   }
+
+  @override
+  Future<bool> isEmailInDb(String email) async {
+    bool inDb = false;
+    usersDb.forEach((key, value) {
+      if (usersDb[key]?.email == email) {
+        inDb = true;
+      }
+    });
+    await Future.delayed(const Duration(seconds: 1));
+    return inDb;
+  }
 }

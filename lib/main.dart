@@ -2,6 +2,7 @@ import 'package:NewsApp/di/injection.dart';
 import 'package:NewsApp/firebase_options.dart';
 import 'package:NewsApp/presentation/auth_page/auth_page.dart';
 import 'package:NewsApp/presentation/login_page/bloc/log_in_bloc.dart';
+import 'package:NewsApp/presentation/reset_password_page/bloc/reset_password_bloc.dart';
 import 'package:NewsApp/presentation/sign_up_page/bloc/sign_up_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,9 @@ class NewsApp extends StatelessWidget {
         ),
         BlocProvider<SignUpBloc>(
           create: (BuildContext context) => getIt<SignUpBloc>(),
+        ),
+        BlocProvider<ResetPasswordBloc>(
+          create: (BuildContext context) => getIt<ResetPasswordBloc>(),
         ),
       ],
       child: const MaterialApp(

@@ -41,4 +41,10 @@ class AuthRepoImpl implements AuthRepo {
   void checkUsersDb() {
     // TODO: implement checkUsersDb
   }
+
+  @override
+  Future<bool> isEmailInDb(String email) {
+    // TODO: implement isEmailInDb
+    throw UnimplementedError();
+  }
 }

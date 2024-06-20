@@ -13,4 +13,5 @@ abstract class AuthRepo {
   });
 
   void checkUsersDb();
+  Future<bool> isEmailInDb(String email);
 }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:NewsApp/presentation/login_page/widgets/dividers_and_text_row.dart';
+import 'package:NewsApp/presentation/reset_password_page/reset_password_page.dart';
 import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/utils/validation.dart';
@@ -129,7 +130,12 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        //TODO Navigator.push...ResetPasswordPage
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResetPasswordPage(),
+                          ),
+                        );
                       },
                       child: const Text(
                         "Forgot password?",
