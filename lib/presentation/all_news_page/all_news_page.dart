@@ -20,6 +20,7 @@ class AllNewsPage extends StatelessWidget {
           return Scaffold(
             backgroundColor: MyConstants.backgroundColor,
             appBar: AppBar(
+              surfaceTintColor: Colors.transparent,
               leading: IconButton(
                 icon: const Icon(Icons.menu),
                 onPressed: () {},
@@ -60,7 +61,7 @@ class AllNewsPage extends StatelessWidget {
                 if (state is AllNewsLoaded) {
                   return ListView(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 28.w,
+                      horizontal: 17.w,
                       vertical: 40.h,
                     ),
                     children: [

@@ -96,10 +96,10 @@ class CurrentNewsPage extends StatelessWidget {
                                   fontSize: 16.sp,
                                 ),
                               ),
-                              SizedBox(height: 20.h),
+                              SizedBox(height: 50.h),
                               ContainerWithShades(
                                 width: 372,
-                                height: 190,
+                                height: 300,
                                 child: Image.network(
                                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuw4kqeW6XFwFz2iacuC4QGjkDprQh4QPdJg&s"),
                               )
