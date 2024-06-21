@@ -1,5 +1,6 @@
 import 'package:NewsApp/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContainerWithShades extends StatelessWidget {
   const ContainerWithShades({
@@ -24,8 +25,8 @@ class ContainerWithShades extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: width,
-        height: height,
+        width: width?.w,
+        height: height?.h,
         padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),

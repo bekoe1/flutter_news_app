@@ -62,11 +62,6 @@ abstract class Validation {
         return "Пароль должен содержать хотя хотя бы одну цифру";
       }
 
-      RegExp onlySymbols = new RegExp(r'[^\w\s]');
-      if (!onlySymbols.hasMatch(password)) {
-        return "Пароль должен содержать хотя хотя бы один символ";
-      }
-
       RegExp moreThanSix = new RegExp(r'.{6,}');
       if (!moreThanSix.hasMatch(password)) {
         return "Пароль слишком короткий";

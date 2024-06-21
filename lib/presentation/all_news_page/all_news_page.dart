@@ -1,10 +1,10 @@
-import 'package:NewsApp/data/repo_impl/mock_auth_repo_impl.dart';
 import 'package:NewsApp/presentation/all_news_page/widget/featured_news_list.dart';
 import 'package:NewsApp/presentation/all_news_page/widget/latest_news_list.dart';
 import 'package:NewsApp/presentation/current_news_page/current_news_page.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bloc/all_news_bloc.dart';
 
@@ -21,10 +21,8 @@ class AllNewsPage extends StatelessWidget {
             backgroundColor: MyConstants.backgroundColor,
             appBar: AppBar(
               leading: IconButton(
-                icon: MyConstants.leading,
-                onPressed: () {
-                  MockAuthRepoImpl().checkUsersDb();
-                },
+                icon: const Icon(Icons.menu),
+                onPressed: () {},
               ),
               actions: state is AllNewsLoaded
                   ? [
@@ -35,7 +33,7 @@ class AllNewsPage extends StatelessWidget {
                         child: Text(
                           "Mark all read",
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 18.sp,
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
                               fontFamily: MyConstants.fontFamily),
@@ -44,11 +42,11 @@ class AllNewsPage extends StatelessWidget {
                     ]
                   : null,
               title: Padding(
-                padding: const EdgeInsets.only(left: 70),
+                padding: EdgeInsets.only(left: 70.w),
                 child: Text(
                   "Notifications",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
                     fontFamily: MyConstants.fontFamily,
@@ -61,19 +59,21 @@ class AllNewsPage extends StatelessWidget {
               builder: (context) {
                 if (state is AllNewsLoaded) {
                   return ListView(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 28, vertical: 40),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 28.w,
+                      vertical: 40.h,
+                    ),
                     children: [
                       Text(
                         "Featured",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
                           fontFamily: MyConstants.fontFamily,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       FeaturedList(
                         featuredNews: state.featuredNews,
                         onNewsTap: (article) {
@@ -92,16 +92,16 @@ class AllNewsPage extends StatelessWidget {
                           );
                         },
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       Text(
                         "Latest news",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontFamily: MyConstants.fontFamily,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       LatestNewsList(
                         latestNews: state.latestNews,
                         onNewsTap: (article) {

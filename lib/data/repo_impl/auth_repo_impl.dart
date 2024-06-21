@@ -1,11 +1,14 @@
 import 'package:NewsApp/domain/models/user_model.dart';
 import 'package:NewsApp/domain/repositories/auth/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuth _auth;
 
   AuthRepoImpl(this._auth);
+
   @override
   Future<String?> createUserWithEmailAndPass({
     required String email,
@@ -43,8 +46,12 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<bool> isEmailInDb(String email) {
-    // TODO: implement isEmailInDb
-    throw UnimplementedError();
+  Future<void> isEmailInDb(String email) async {
+    throw Exception("");
+  }
+
+  @override
+  Future<void> sendPasswordResetLink({required String email}) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 }

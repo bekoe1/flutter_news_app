@@ -7,6 +7,7 @@ import 'package:NewsApp/presentation/sign_up_page/bloc/sign_up_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +31,12 @@ class NewsApp extends StatelessWidget {
           create: (BuildContext context) => getIt<ResetPasswordBloc>(),
         ),
       ],
-      child: const MaterialApp(
-        home: AuthPage(),
+      child: const ScreenUtilInit(
+        designSize: Size(393, 808),
+        minTextAdapt: true,
+        child: MaterialApp(
+          home: AuthPage(),
+        ),
       ),
     );
   }

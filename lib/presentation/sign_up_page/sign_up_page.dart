@@ -7,6 +7,7 @@ import 'package:NewsApp/widgets/custom_elevated_button.dart';
 import 'package:NewsApp/widgets/cutom_textform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'bloc/sign_up_bloc.dart';
@@ -19,7 +20,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String? FormSubmittionStatus({
+  String? formSubmittingStatus({
     required String name,
     required String email,
     required String pass,
@@ -96,17 +97,17 @@ class _SignUpPageState extends State<SignUpPage> {
             },
             child: Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(
-                    left: 30,
-                    top: 60,
-                    right: 74,
-                    bottom: 57,
+                    left: 30.w,
+                    top: 60.h,
+                    right: 74.w,
+                    bottom: 57.h,
                   ),
                   child: Text(
                     "To use this app you need to register!",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 30.sp,
                       fontWeight: FontWeight.w700,
                       fontFamily: "Bold",
                     ),
@@ -122,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   text: "Username",
                   textInputType: TextInputType.name,
                 ),
-                const SizedBox(height: 14),
+                SizedBox(height: 14.h),
                 CustomTextForm(
                   width: 330,
                   height: 56,
@@ -133,7 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   text: "Email",
                   textInputType: TextInputType.emailAddress,
                 ),
-                const SizedBox(height: 14),
+                SizedBox(height: 14.h),
                 CustomTextForm(
                   width: 330,
                   height: 56,
@@ -155,7 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                const SizedBox(height: 14),
+                SizedBox(height: 14.h),
                 CustomTextForm(
                   width: 330,
                   height: 56,
@@ -179,14 +180,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                const SizedBox(height: 14),
+                SizedBox(height: 14.h),
                 ContainerWithShades(
                   width: 330,
                   height: 56,
                   child: CustomElevatedButton.classicBlack(
                     text: "Register",
                     onPressed: () {
-                      if (FormSubmittionStatus(
+                      if (formSubmittingStatus(
                             name: usernameController.text,
                             email: emailController.text,
                             pass: passwordController.text,
@@ -204,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              FormSubmittionStatus(
+                              formSubmittingStatus(
                                 name: usernameController.text,
                                 email: emailController.text,
                                 pass: passwordController.text,
@@ -219,14 +220,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 const TextBetweenDividers(
                   text: "Or Sign Up with",
                 ),
-                const SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 SizedBox(
-                  height: 60,
-                  width: 100,
+                  height: 60.h,
+                  width: 100.w,
                   child: IconButton(
                     icon: SvgPicture.asset("icons/google_icon.svg"),
                     onPressed: () {},

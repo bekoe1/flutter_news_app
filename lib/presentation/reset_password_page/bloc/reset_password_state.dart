@@ -5,14 +5,14 @@ abstract class ResetPasswordState {}
 
 class ResetPasswordInitial extends ResetPasswordState {}
 
-class VerifyingEmailSuccessState extends ResetPasswordState {
+class SendingEmailLinkSuccessState extends ResetPasswordState {
   final String email;
 
-  VerifyingEmailSuccessState({required this.email});
+  SendingEmailLinkSuccessState({required this.email});
 }
 
-class VerifyingEmailErrorState extends ResetPasswordState {
+class SendingEmailLinkErrorState extends ResetPasswordState {
   final String error;
 
-  VerifyingEmailErrorState({required this.error});
+  SendingEmailLinkErrorState({required this.error});
 }

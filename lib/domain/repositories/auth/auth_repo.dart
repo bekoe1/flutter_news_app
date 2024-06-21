@@ -12,6 +12,9 @@ abstract class AuthRepo {
     required String pass,
   });
 
+  Future<void> sendPasswordResetLink({required String email});
+
   void checkUsersDb();
-  Future<bool> isEmailInDb(String email);
+
+  Future<void> isEmailInDb(String email);
 }

@@ -1,6 +1,7 @@
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextForm extends StatelessWidget {
   const CustomTextForm({
@@ -29,25 +30,25 @@ class CustomTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ContainerWithShades(
-      width: width,
-      height: height,
+      width: width.w,
+      height: height.h,
       child: TextFormField(
         onTap: onTap,
         validator: validationFunc,
         cursorOpacityAnimates: true,
         obscureText: isObscure ?? false,
         cursorColor: Colors.black87,
-        cursorWidth: 2,
+        cursorWidth: 2.sp,
         controller: controller,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w400,
-          fontSize: 18,
+          fontSize: 18.sp,
           color: Colors.black,
         ),
         keyboardType: textInputType,
         decoration: InputDecoration(
-          errorStyle: const TextStyle(fontSize: 0.001),
-          prefixIcon: const SizedBox(width: 2),
+          errorStyle: TextStyle(fontSize: 0.001.spMin),
+          prefixIcon: const SizedBox(width: 1),
           filled: true,
           hintText: text,
           hintStyle: TextStyle(color: MyConstants.smallTextColor),
@@ -58,30 +59,30 @@ class CustomTextForm extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: Color.fromRGBO(218, 218, 218, 1),
-              width: 2,
+            borderSide: BorderSide(
+              color: const Color.fromRGBO(218, 218, 218, 1),
+              width: 2.w,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
+            borderSide: BorderSide(
               color: Colors.red,
-              width: 2,
+              width: 2.w,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
+            borderSide: BorderSide(
               color: Colors.red,
-              width: 2,
+              width: 2.w,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: Color.fromRGBO(218, 218, 218, 1),
-              width: 2,
+            borderSide: BorderSide(
+              color: const Color.fromRGBO(218, 218, 218, 1),
+              width: 2.w,
             ),
           ),
         ),

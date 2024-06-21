@@ -1,9 +1,12 @@
+import 'package:NewsApp/presentation/all_news_page/all_news_page.dart';
 import 'package:NewsApp/presentation/login_page/login_page.dart';
 import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:NewsApp/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -14,7 +17,18 @@ class AuthPage extends StatelessWidget {
       backgroundColor: MyConstants.backgroundColor,
       body: Column(
         children: [
-          const SizedBox(height: 498),
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: 130.h,
+              top: 220.h,
+            ),
+            child: ContainerWithShades(
+              color: Colors.transparent,
+              height: 120,
+              width: 120,
+              child: SvgPicture.asset("icons/news_icon.svg"),
+            ),
+          ),
           Center(
             child: ContainerWithShades(
               width: 330,
@@ -23,14 +37,16 @@ class AuthPage extends StatelessWidget {
                 text: "Login",
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
+                  );
                 },
               ),
             ),
           ),
-          const SizedBox(height: 15),
+          SizedBox(height: 15.h),
           Center(
             child: ContainerWithShades(
               width: 330,
@@ -46,37 +62,39 @@ class AuthPage extends StatelessWidget {
                 },
                 text: 'Register',
                 backgroundColor: Colors.white,
-                textStyle: const TextStyle(
+                textStyle: TextStyle(
                   color: Colors.black,
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 100,
-            ),
-            child: TextButton(
-              child: const Text(
-                "Continue as guest",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color.fromRGBO(53, 194, 193, 1),
-                  decoration: TextDecoration.underline,
-                  decorationColor: Color.fromRGBO(53, 194, 193, 1),
-                  shadows: [
-                    Shadow(
-                      offset: Offset(0, 4),
-                      blurRadius: 5,
-                      color: Color.fromRGBO(0, 0, 0, 0.25),
-                    ),
-                  ],
-                ),
+          SizedBox(height: 140.h),
+          TextButton(
+            child: Text(
+              "Continue as guest",
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: const Color.fromRGBO(53, 194, 193, 1),
+                decoration: TextDecoration.underline,
+                decorationColor: const Color.fromRGBO(53, 194, 193, 1),
+                shadows: const [
+                  Shadow(
+                    offset: Offset(0, 4),
+                    blurRadius: 5,
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                  ),
+                ],
               ),
-              onPressed: () {},
             ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const AllNewsPage()),
+                (Route<dynamic> route) => false,
+              );
+            },
           ),
         ],
       ),

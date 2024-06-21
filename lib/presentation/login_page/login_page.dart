@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:NewsApp/presentation/all_news_page/all_news_page.dart';
 import 'package:NewsApp/presentation/login_page/widgets/dividers_and_text_row.dart';
 import 'package:NewsApp/presentation/reset_password_page/reset_password_page.dart';
 import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
@@ -10,6 +11,7 @@ import 'package:NewsApp/widgets/custom_elevated_button.dart';
 import 'package:NewsApp/widgets/cutom_textform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'bloc/log_in_bloc.dart';
@@ -56,29 +58,29 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 );
               } else if (state is LogInSuccessfulState) {
-                // Navigator.pushAndRemoveUntil(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (_) => const AllNewsPage(),
-                //   ),
-                //   (Route<dynamic> route) => false,
-                // );
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const AllNewsPage(),
+                  ),
+                  (Route<dynamic> route) => false,
+                );
                 log("прошел на страницу");
               }
             },
             child: Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(
-                    left: 21,
-                    top: 60,
-                    right: 74,
-                    bottom: 57,
+                    left: 21.w,
+                    top: 60.h,
+                    right: 74.w,
+                    bottom: 57.h,
                   ),
                   child: Text(
                     "Welcome back! Glad\nto see you, Again!",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 30.sp,
                       fontWeight: FontWeight.w700,
                       fontFamily: "Bold",
                     ),
@@ -97,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                         text: "Enter your email",
                         textInputType: TextInputType.emailAddress,
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.h),
                       CustomTextForm(
                         width: 330,
                         height: 56,
@@ -125,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 6, right: 22),
+                  padding: EdgeInsets.only(top: 6.h, right: 22.w),
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -137,18 +139,18 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         "Forgot password?",
                         maxLines: 1,
                         style: TextStyle(
-                          color: Color.fromRGBO(106, 112, 124, 1),
-                          fontSize: 14,
+                          color: const Color.fromRGBO(106, 112, 124, 1),
+                          fontSize: 14.sp,
                         ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 ContainerWithShades(
                   width: 330,
                   height: 56,
@@ -196,27 +198,27 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 60.h),
                 const TextBetweenDividers(
                   text: "Or Login with",
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 SizedBox(
-                  height: 60,
-                  width: 100,
+                  height: 60.h,
+                  width: 100.w,
                   child: IconButton(
                     icon: SvgPicture.asset("icons/google_icon.svg"),
                     onPressed: () {},
                   ),
                 ),
-                const SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Don't have an account?",
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -233,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                         "Register Now!",
                         style: TextStyle(
                           color: MyConstants.blueColorForTextButtons,
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

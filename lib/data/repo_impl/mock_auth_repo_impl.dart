@@ -2,9 +2,7 @@ import 'dart:developer';
 
 import 'package:NewsApp/domain/models/user_model.dart';
 import 'package:NewsApp/domain/repositories/auth/auth_repo.dart';
-import 'package:injectable/injectable.dart';
 
-@Singleton(as: AuthRepo)
 class MockAuthRepoImpl implements AuthRepo {
   final Map<String, UserModel> usersDb = {
     '810710871': UserModel(
@@ -88,5 +86,11 @@ class MockAuthRepoImpl implements AuthRepo {
     });
     await Future.delayed(const Duration(seconds: 1));
     return inDb;
+  }
+
+  @override
+  Future<void> sendPasswordResetLink({required String email}) async {
+    await Future.delayed(const Duration(seconds: 1));
+    log("link sent");
   }
 }

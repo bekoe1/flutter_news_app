@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:NewsApp/domain/repositories/auth/auth_repo.dart';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
@@ -18,18 +19,20 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
 
   Future<void> _onAttemptTOVerifyEmail(
       AttemptToVerifyEmailEvent event, Emitter<ResetPasswordState> emit) async {
-    final response = await authRepo.isEmailInDb(event.email);
-    if (response) {
+    try {
+      final response = await authRepo.sendPasswordResetLink(email: event.email);
       emit(
-        VerifyingEmailSuccessState(email: event.email),
+        SendingEmailLinkSuccessState(email: event.email),
       );
-    } else if (!response) {
+    } on FirebaseAuthException catch (e) {
       emit(
-        VerifyingEmailErrorState(error: "Email not found"),
+        SendingEmailLinkErrorState(error: e.message!),
       );
-    } else {
+    } catch (e) {
       emit(
-        VerifyingEmailErrorState(error: "Error occupied"),
+        SendingEmailLinkErrorState(
+          error: e.toString(),
+        ),
       );
     }
   }

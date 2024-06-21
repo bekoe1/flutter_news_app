@@ -1,12 +1,15 @@
 import 'dart:developer';
 
 import 'package:NewsApp/presentation/reset_password_page/bloc/reset_password_bloc.dart';
+import 'package:NewsApp/presentation/success_reset_page/success_reset_page.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/utils/validation.dart';
+import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:NewsApp/widgets/custom_elevated_button.dart';
 import 'package:NewsApp/widgets/cutom_textform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   ResetPasswordPage({super.key});
@@ -32,7 +35,7 @@ class ResetPasswordPage extends StatelessWidget {
         ),
         body: BlocListener<ResetPasswordBloc, ResetPasswordState>(
           listener: (context, state) {
-            if (state is VerifyingEmailErrorState) {
+            if (state is SendingEmailLinkErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.error),
@@ -41,9 +44,15 @@ class ResetPasswordPage extends StatelessWidget {
                 ),
               );
             }
-            if (state is VerifyingEmailSuccessState) {
+            if (state is SendingEmailLinkSuccessState) {
               log("переход");
-              //TODO переход на страницу сброса пароля
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SuccessResetPage(),
+                ),
+                (Route<dynamic> route) => false,
+              );
             }
           },
           child: SingleChildScrollView(
@@ -51,17 +60,17 @@ class ResetPasswordPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                    top: 60,
-                    bottom: 57,
+                  padding: EdgeInsets.only(
+                    top: 60.h,
+                    bottom: 57.w,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Forgot Password?",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 30.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -69,7 +78,7 @@ class ResetPasswordPage extends StatelessWidget {
                         "Don't worry! It occurs. Please enter the email\naddress linked with your account.",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           color: MyConstants.smallTextColor,
                         ),
                       ),
@@ -81,36 +90,40 @@ class ResetPasswordPage extends StatelessWidget {
                     controller: emailController,
                     text: "Enter your email",
                     textInputType: TextInputType.emailAddress,
-                    width: 330,
-                    height: 56,
+                    width: 330.w,
+                    height: 56.h,
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 Center(
-                  child: CustomElevatedButton.classicBlack(
-                    text: "Verify",
-                    onPressed: () {
-                      if (Validation.ValidateEmail(emailController.text) !=
-                          null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              Validation.ValidateEmail(
-                                emailController.text,
-                              )!,
-                            ),
-                            backgroundColor: Colors.grey,
-                            duration: const Duration(seconds: 2),
-                          ),
-                        );
-                      } else {
-                        context.read<ResetPasswordBloc>().add(
-                              AttemptToVerifyEmailEvent(
-                                email: emailController.text,
+                  child: ContainerWithShades(
+                    width: 330,
+                    height: 56,
+                    child: CustomElevatedButton.classicBlack(
+                      text: "Send email link",
+                      onPressed: () {
+                        if (Validation.ValidateEmail(emailController.text) !=
+                            null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                Validation.ValidateEmail(
+                                  emailController.text,
+                                )!,
                               ),
-                            );
-                      }
-                    },
+                              backgroundColor: Colors.grey,
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        } else {
+                          context.read<ResetPasswordBloc>().add(
+                                AttemptToVerifyEmailEvent(
+                                  email: emailController.text,
+                                ),
+                              );
+                        }
+                      },
+                    ),
                   ),
                 ),
               ],
