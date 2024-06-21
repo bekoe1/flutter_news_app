@@ -2,6 +2,7 @@ import 'package:NewsApp/domain/repositories/news/models/article.dart';
 import 'package:NewsApp/presentation/all_news_page/widget/featured_news_item.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FeaturedList extends StatelessWidget {
   const FeaturedList({
@@ -16,13 +17,13 @@ class FeaturedList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: 300.h,
       child: ListView.separated(
         clipBehavior: Clip.none,
         itemBuilder: (context, index) {
           return ContainerWithShades(
-            width: 358,
-            height: 300,
+            width: 358.w,
+            height: 300.h,
             onTap: () {
               onNewsTap(featuredNews[index]);
             },
@@ -35,7 +36,7 @@ class FeaturedList extends StatelessWidget {
         itemCount: featuredNews.length,
         scrollDirection: Axis.horizontal,
         separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(width: 28);
+          return SizedBox(width: 28.h);
         },
       ),
     );
