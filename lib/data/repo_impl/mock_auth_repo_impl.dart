@@ -93,4 +93,10 @@ class MockAuthRepoImpl implements AuthRepo {
     await Future.delayed(const Duration(seconds: 1));
     log("link sent");
   }
+
+  @override
+  Future<UserModel?> logInWithGoogle() {
+    // TODO: implement logInWithGoogle
+    throw UnimplementedError();
+  }
 }

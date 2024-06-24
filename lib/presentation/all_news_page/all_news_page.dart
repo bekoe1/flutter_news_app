@@ -1,3 +1,4 @@
+import 'package:NewsApp/presentation/all_news_page/widget/all_news_drawer.dart';
 import 'package:NewsApp/presentation/all_news_page/widget/featured_news_list.dart';
 import 'package:NewsApp/presentation/all_news_page/widget/latest_news_list.dart';
 import 'package:NewsApp/presentation/current_news_page/current_news_page.dart';
@@ -9,7 +10,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'bloc/all_news_bloc.dart';
 
 class AllNewsPage extends StatelessWidget {
-  const AllNewsPage({Key? key}) : super(key: key);
+  const AllNewsPage({
+    Key? key,
+    required this.name,
+    required this.email,
+    this.imageUrl,
+  }) : super(key: key);
+  final String name;
+  final String email;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +27,14 @@ class AllNewsPage extends StatelessWidget {
       child: BlocBuilder<AllNewsBloc, AllNewsState>(
         builder: (context, state) {
           return Scaffold(
+            drawer: AllNewsDrawer(
+              email: email,
+              name: name,
+              imageUrl: imageUrl,
+            ),
             backgroundColor: MyConstants.backgroundColor,
             appBar: AppBar(
               surfaceTintColor: Colors.transparent,
-              leading: IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {},
-              ),
               actions: state is AllNewsLoaded
                   ? [
                       TextButton(

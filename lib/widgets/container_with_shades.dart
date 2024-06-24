@@ -1,6 +1,5 @@
 import 'package:NewsApp/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContainerWithShades extends StatelessWidget {
   const ContainerWithShades({
@@ -11,6 +10,7 @@ class ContainerWithShades extends StatelessWidget {
     this.height,
     this.color,
     this.onTap,
+    this.boxShadow,
   });
 
   final Widget child;
@@ -19,26 +19,29 @@ class ContainerWithShades extends StatelessWidget {
   final double? height;
   final EdgeInsets? padding;
   final Color? color;
+  final BoxShadow? boxShadow;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: width?.w,
-        height: height?.h,
+        width: width,
+        height: height,
         padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: color ?? MyConstants.backgroundColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 0,
-              blurRadius: 20,
-              offset: const Offset(4, 4),
-            ),
-          ],
+          boxShadow: boxShadow != null
+              ? [boxShadow!]
+              : [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 0,
+                    blurRadius: 20,
+                    offset: const Offset(4, 4),
+                  ),
+                ],
         ),
         child: child,
       ),

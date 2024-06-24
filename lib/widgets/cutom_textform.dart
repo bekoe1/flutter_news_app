@@ -15,6 +15,7 @@ class CustomTextForm extends StatelessWidget {
     required this.width,
     required this.height,
     this.onTap,
+    this.inputAction,
   });
 
   final TextEditingController controller;
@@ -25,13 +26,14 @@ class CustomTextForm extends StatelessWidget {
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final void Function()? onTap;
+  final TextInputAction? inputAction;
   final String? Function(String?)? validationFunc;
 
   @override
   Widget build(BuildContext context) {
     return ContainerWithShades(
-      width: width.w,
-      height: height.h,
+      width: width,
+      height: height,
       child: TextFormField(
         onTap: onTap,
         validator: validationFunc,
@@ -40,6 +42,7 @@ class CustomTextForm extends StatelessWidget {
         cursorColor: Colors.black87,
         cursorWidth: 2.sp,
         controller: controller,
+        textInputAction: inputAction,
         style: TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 18.sp,
@@ -48,8 +51,12 @@ class CustomTextForm extends StatelessWidget {
         keyboardType: textInputType,
         decoration: InputDecoration(
           errorStyle: TextStyle(fontSize: 0.001.spMin),
-          prefixIcon: const SizedBox(width: 1),
+          // prefixIcon: const SizedBox(width: 1),
           filled: true,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15,
+          ),
           hintText: text,
           hintStyle: TextStyle(color: MyConstants.smallTextColor),
           fillColor: const Color.fromRGBO(247, 248, 249, 1),

@@ -16,5 +16,7 @@ abstract class AuthRepo {
 
   void checkUsersDb();
 
+  Future<UserModel?> logInWithGoogle();
+
   Future<void> isEmailInDb(String email);
 }

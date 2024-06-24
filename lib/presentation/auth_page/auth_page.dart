@@ -1,6 +1,6 @@
 import 'package:NewsApp/presentation/all_news_page/all_news_page.dart';
-import 'package:NewsApp/presentation/login_page/login_page.dart';
-import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
+import 'package:NewsApp/presentation/auth_page/login_page/login_page.dart';
+import 'package:NewsApp/presentation/auth_page/sign_up_page/sign_up_page.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:NewsApp/widgets/custom_elevated_button.dart';
@@ -91,7 +91,11 @@ class AuthPage extends StatelessWidget {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const AllNewsPage()),
+                MaterialPageRoute(
+                    builder: (context) => const AllNewsPage(
+                          email: "",
+                          name: "",
+                        )),
                 (Route<dynamic> route) => false,
               );
             },

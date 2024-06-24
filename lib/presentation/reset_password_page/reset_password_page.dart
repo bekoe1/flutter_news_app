@@ -90,15 +90,15 @@ class ResetPasswordPage extends StatelessWidget {
                     controller: emailController,
                     text: "Enter your email",
                     textInputType: TextInputType.emailAddress,
-                    width: 330.w,
-                    height: 56.h,
+                    width: 330,
+                    height: 56,
                   ),
                 ),
                 SizedBox(height: 30.h),
                 Center(
                   child: ContainerWithShades(
-                    width: 330,
-                    height: 56,
+                    width: 330.w,
+                    height: 56.h,
                     child: CustomElevatedButton.classicBlack(
                       text: "Send email link",
                       onPressed: () {

@@ -1,9 +1,10 @@
 import 'dart:developer';
 
 import 'package:NewsApp/presentation/all_news_page/all_news_page.dart';
-import 'package:NewsApp/presentation/login_page/widgets/dividers_and_text_row.dart';
+import 'package:NewsApp/presentation/auth_page/bloc/auth_bloc.dart';
+import 'package:NewsApp/presentation/auth_page/login_page/widgets/dividers_and_text_row.dart';
+import 'package:NewsApp/presentation/auth_page/sign_up_page/sign_up_page.dart';
 import 'package:NewsApp/presentation/reset_password_page/reset_password_page.dart';
-import 'package:NewsApp/presentation/sign_up_page/sign_up_page.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/utils/validation.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
@@ -13,8 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'bloc/log_in_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -47,9 +46,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         body: SingleChildScrollView(
-          child: BlocListener<LogInBloc, LogInState>(
+          child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
-              if (state is LogInErrorState) {
+              if (state is AuthErrorState) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.error),
@@ -57,11 +56,15 @@ class _LoginPageState extends State<LoginPage> {
                     duration: const Duration(seconds: 2),
                   ),
                 );
-              } else if (state is LogInSuccessfulState) {
+              } else if (state is AuthSuccessfulState) {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const AllNewsPage(),
+                    builder: (context) => AllNewsPage(
+                      email: state.user.email,
+                      name: state.user.name,
+                      imageUrl: state.user.imageUrl,
+                    ),
                   ),
                   (Route<dynamic> route) => false,
                 );
@@ -161,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                               null) &&
                           Validation.ValidatePass(passwordController.text) ==
                               null) {
-                        context.read<LogInBloc>().add(
+                        context.read<AuthBloc>().add(
                               AttemptToLogInEvent(
                                 email: emailController.text,
                                 password: passwordController.text,
@@ -198,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                 ),
-                SizedBox(height: 60.h),
+                SizedBox(height: 85.h),
                 const TextBetweenDividers(
                   text: "Or Login with",
                 ),
@@ -208,7 +211,11 @@ class _LoginPageState extends State<LoginPage> {
                   width: 100.w,
                   child: IconButton(
                     icon: SvgPicture.asset("icons/google_icon.svg"),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthBloc>().add(
+                            AttemptToSignUpWithGoogleEvent(),
+                          );
+                    },
                   ),
                 ),
                 SizedBox(height: 15.h),

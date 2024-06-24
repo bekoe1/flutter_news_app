@@ -1,4 +1,4 @@
-import 'package:NewsApp/presentation/login_page/login_page.dart';
+import 'package:NewsApp/presentation/auth_page/login_page/login_page.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
 import 'package:NewsApp/widgets/custom_elevated_button.dart';

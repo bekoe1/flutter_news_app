@@ -1,5 +1,9 @@
-import 'package:NewsApp/presentation/login_page/login_page.dart';
-import 'package:NewsApp/presentation/login_page/widgets/dividers_and_text_row.dart';
+import 'dart:developer';
+
+import 'package:NewsApp/presentation/all_news_page/all_news_page.dart';
+import 'package:NewsApp/presentation/auth_page/bloc/auth_bloc.dart';
+import 'package:NewsApp/presentation/auth_page/login_page/login_page.dart';
+import 'package:NewsApp/presentation/auth_page/login_page/widgets/dividers_and_text_row.dart';
 import 'package:NewsApp/utils/constants.dart';
 import 'package:NewsApp/utils/validation.dart';
 import 'package:NewsApp/widgets/container_with_shades.dart';
@@ -9,8 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'bloc/sign_up_bloc.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -74,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
         body: SingleChildScrollView(
-          child: BlocListener<SignUpBloc, SignUpState>(
+          child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is SignUpSuccessfulState) {
                 Navigator.push(
@@ -83,7 +85,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     builder: (context) => const LoginPage(),
                   ),
                 );
-              } else if (state is SignUpErrorState) {
+              } else if (state is AuthErrorState) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -93,6 +95,20 @@ class _SignUpPageState extends State<SignUpPage> {
                     duration: const Duration(seconds: 2),
                   ),
                 );
+              }
+              if (state is AuthSuccessfulState) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AllNewsPage(
+                      email: state.user.email,
+                      imageUrl: state.user.imageUrl,
+                      name: state.user.name,
+                    ),
+                  ),
+                  (Route<dynamic> route) => false,
+                );
+                log("прошел на страницу");
               }
             },
             child: Column(
@@ -120,6 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     return Validation.ValidateUsername(name!);
                   },
                   controller: usernameController,
+                  inputAction: TextInputAction.next,
                   text: "Username",
                   textInputType: TextInputType.name,
                 ),
@@ -131,6 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     return Validation.ValidateEmail(email!);
                   },
                   controller: emailController,
+                  inputAction: TextInputAction.next,
                   text: "Email",
                   textInputType: TextInputType.emailAddress,
                 ),
@@ -142,6 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: passwordController,
                   isObscure: isObscuring,
                   text: "Password",
+                  inputAction: TextInputAction.next,
                   textInputType: TextInputType.text,
                   suffixIcon: IconButton(
                     icon: !isObscuring
@@ -163,6 +182,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   validationFunc: (pass) {
                     return Validation.ValidatePass(pass!);
                   },
+                  inputAction: TextInputAction.next,
                   controller: passwordConfirmController,
                   isObscure: isObscuring,
                   text: "Confirm password",
@@ -182,8 +202,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SizedBox(height: 14.h),
                 ContainerWithShades(
-                  width: 330,
-                  height: 56,
+                  width: 330.w,
+                  height: 56.h,
                   child: CustomElevatedButton.classicBlack(
                     text: "Register",
                     onPressed: () {
@@ -194,7 +214,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             passToConfirm: passwordConfirmController.text,
                           ) ==
                           null) {
-                        context.read<SignUpBloc>().add(
+                        context.read<AuthBloc>().add(
                               AttemptToSignUpEvent(
                                 password: passwordConfirmController.text,
                                 email: emailController.text,
@@ -220,7 +240,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                SizedBox(height: 30.h),
+                SizedBox(height: 40.h),
                 const TextBetweenDividers(
                   text: "Or Sign Up with",
                 ),
@@ -230,7 +250,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   width: 100.w,
                   child: IconButton(
                     icon: SvgPicture.asset("icons/google_icon.svg"),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthBloc>().add(
+                            AttemptToSignUpWithGoogleEvent(),
+                          );
+                    },
                   ),
                 ),
               ],

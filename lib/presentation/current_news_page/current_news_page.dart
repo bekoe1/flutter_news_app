@@ -22,7 +22,12 @@ class CurrentNewsPage extends StatelessWidget {
             body: CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  clipBehavior: Clip.none,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(12.r),
+                    ),
+                  ),
+                  clipBehavior: Clip.hardEdge,
                   forceElevated: true,
                   backgroundColor: Colors.black,
                   leading: IconButton(
@@ -39,6 +44,7 @@ class CurrentNewsPage extends StatelessWidget {
                   expandedHeight: state is ArticleLoaded ? 495.h : null,
                   floating: true,
                   pinned: true,
+                  shadowColor: Colors.grey,
                   flexibleSpace: state is ArticleLoaded
                       ? LayoutBuilder(
                           builder: (context, constraints) => FlexibleSpaceBar(
@@ -57,7 +63,7 @@ class CurrentNewsPage extends StatelessWidget {
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
-                            background: DecoratedBox(
+                            background: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
@@ -68,9 +74,14 @@ class CurrentNewsPage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              child: Image.network(
-                                state.article.imageUrl,
-                                fit: BoxFit.fill,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.vertical(
+                                  bottom: Radius.circular(12.r),
+                                ),
+                                child: Image.network(
+                                  state.article.imageUrl,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           ),
@@ -99,7 +110,21 @@ class CurrentNewsPage extends StatelessWidget {
                               SizedBox(height: 50.h),
                               ContainerWithShades(
                                 width: 372,
-                                height: 300,
+                                height: 150,
+                                child: Image.network(
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuw4kqeW6XFwFz2iacuC4QGjkDprQh4QPdJg&s"),
+                              ),
+                              SizedBox(height: 50.h),
+                              ContainerWithShades(
+                                width: 372,
+                                height: 150,
+                                child: Image.network(
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuw4kqeW6XFwFz2iacuC4QGjkDprQh4QPdJg&s"),
+                              ),
+                              SizedBox(height: 50.h),
+                              ContainerWithShades(
+                                width: 372,
+                                height: 150,
                                 child: Image.network(
                                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuw4kqeW6XFwFz2iacuC4QGjkDprQh4QPdJg&s"),
                               )
